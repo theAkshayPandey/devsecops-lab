@@ -29,19 +29,17 @@ pipeline {
        🧠 GATE 2 – SAST
        ======================= */
     stage('SAST - Semgrep') {
-      steps {
-        sh '''
-          echo "🧠 Running Semgrep (High Confidence Only)"
-          docker run --rm \
-            -v "${PWD}:/src" \
-            -w /src \
-            returntocorp/semgrep \
-            semgrep scan \
-              --config=p/owasp-top-ten \
-              --severity=ERROR
-        '''
-      }
-    }
+  steps {
+    sh '''
+      echo "🔍 Running Semgrep SAST on repo root"
+      docker run --rm \
+        -v "${WORKSPACE}:/src" \
+        -w /src \
+        returntocorp/semgrep \
+        semgrep scan --config=p/owasp-top-ten --severity=ERROR
+    '''
+  }
+}
 
     /* =======================
        🏗 BUILD
