@@ -33,7 +33,7 @@ pipeline {
         sh '''
           echo "🧠 Running Semgrep (High Confidence Only)"
           docker run --rm \
-            -v "$WORKSPACE:/src" \
+            -v "${PWD}:/src" \
             -w /src \
             returntocorp/semgrep \
             semgrep scan \
