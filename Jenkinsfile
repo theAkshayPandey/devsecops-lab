@@ -17,7 +17,7 @@ pipeline {
 
     stage('SAST - Semgrep') {
       steps {
-        sh 'docker run --rm -v $(pwd):/src returntocorp/semgrep semgrep --config=p/owasp-top-ten --error'
+        sh 'docker run --rm -v $(pwd):/src returntocorp/semgrep semgrep scan --config=p/owasp-top-ten --error'
       }
     }
 
